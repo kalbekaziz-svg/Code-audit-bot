@@ -1,0 +1,19 @@
+CodeAuditBot 🛡️
+An independent Telegram bot for automated Static Application Security Testing (SAST) and vulnerability detection using a local language model via Ollama (⁠qwen2.5:7b⁠).
+🚀 Features
+ Accepts code files (⁠.js⁠, ⁠.py⁠, ⁠.php⁠, ⁠.txt⁠, etc.) directly in Telegram.
+ Automatic file size limits (context protection).
+ Deep security analysis (injection detection, secret leaks, logic errors).
+ Secure code alternative generation.
+ Persistent logging of all requests and errors using ⁠winston⁠ to ⁠logs/audit.log⁠.
+🛠 Installation and Setup
+1. Clone the repository or copy the project files.
+2. Install dependencies:
+npm install
+3. Create a ⁠.env⁠ file based on your configuration and specify your Telegram bot token:
+BOT_TOKEN=your_telegram_bot_token
+OLLAMA_URL=http://localhost:11434/api/generate
+4. Make sure your local Ollama server is running with the ⁠qwen2.5:7b⁠ model:
+ollama run qwen2.5:7b
+5. Run the bot:
+node index.js
