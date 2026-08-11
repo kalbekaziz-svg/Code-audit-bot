@@ -1,19 +1,19 @@
 CodeAuditBot 🛡️
-An independent Telegram bot for automated Static Application Security Testing (SAST) and vulnerability detection using a local language model via Ollama (⁠qwen2.5:7b⁠).
-🚀 Features
- Accepts code files (⁠.js⁠, ⁠.py⁠, ⁠.php⁠, ⁠.txt⁠, etc.) directly in Telegram.
- Automatic file size limits (context protection).
- Deep security analysis (injection detection, secret leaks, logic errors).
- Secure code alternative generation.
- Persistent logging of all requests and errors using ⁠winston⁠ to ⁠logs/audit.log⁠.
-🛠 Installation and Setup
-1. Clone the repository or copy the project files.
-2. Install dependencies:
-npm install
-3. Create a ⁠.env⁠ file based on your configuration and specify your Telegram bot token:
-BOT_TOKEN=your_telegram_bot_token
-OLLAMA_URL=http://localhost:11434/api/generate
-4. Make sure your local Ollama server is running with the ⁠qwen2.5:7b⁠ model:
-ollama run qwen2.5:7b
-5. Run the bot:
-node index.js
+A local AI-powered security code auditor that uses Ollama and Qwen2.5-Coder to perform static analysis on source code files directly through Telegram.
+Features
+ Local AI Analysis: Runs entirely locally for privacy via Ollama.
+ Vulnerability Scanning: Detects SQL Injection, XSS, RCE, and other common vulnerabilities.
+ Secure Handling: Automatically validates file extensions and handles errors gracefully.
+ Telegraf Integration: Easy interaction via Telegram bot.
+Getting Started
+1. Install Ollama from ollama.com
+2. Download the model by running: ollama run qwen2.5-coder:7b
+3. Setup the project:
+ Run npm install in your terminal
+ Copy .env.example to .env
+ Add your Telegram BOT_TOKEN to the .env file
+ Run node index.js to start the bot
+Built With
+ Node.js and Telegraf
+ Ollama (Qwen2.5-Coder)
+ Winston (Logging)

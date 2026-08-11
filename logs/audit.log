@@ -1,2 +1,6 @@
-[2026-07-24 13:22:55] [INFO] : Аудит файла "test_vuln.py" (ID пользователя: 7562776557) успешно завершен.
-[2026-07-24 13:28:53] [INFO] : CodeAuditBot успешно запущен и готов искать уязвимости!
+{"level":"error","message":"Критическая ошибка запуска: 401: Bot Token is required"}
+{"level":"info","message":"User 7562776557 uploaded file: index.js"}
+{"level":"info","message":"Successfully analyzed file: index.js"}
+{"level":"info","message":"User 7562776557 uploaded file: file order_service.py"}
+{"level":"info","message":"Successfully analyzed file: file order_service.py"}
+{"level":"info","message":"CodeAuditBot has successfully started..."}
