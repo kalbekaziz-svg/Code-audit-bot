@@ -1,19 +1,147 @@
-CodeAuditBot 🛡️
-A local AI-powered security code auditor that uses Ollama and Qwen2.5-Coder to perform static analysis on source code files directly through Telegram.
-Features
- Local AI Analysis: Runs entirely locally for privacy via Ollama.
- Vulnerability Scanning: Detects SQL Injection, XSS, RCE, and other common vulnerabilities.
- Secure Handling: Automatically validates file extensions and handles errors gracefully.
- Telegraf Integration: Easy interaction via Telegram bot.
-Getting Started
-1. Install Ollama from ollama.com
-2. Download the model by running: ollama run qwen2.5-coder:7b
-3. Setup the project:
- Run npm install in your terminal
- Copy .env.example to .env
- Add your Telegram BOT_TOKEN to the .env file
- Run node index.js to start the bot
-Built With
- Node.js and Telegraf
- Ollama (Qwen2.5-Coder)
- Winston (Logging)
+# CodeAuditBot
+
+A Telegram bot that audits uploaded source code files for common security issues using a local Ollama-based AI model. It is designed for quick security reviews of code snippets and files without sending the code to external services.
+
+## Features
+
+- Upload source files directly to Telegram
+- Supports common programming languages such as JavaScript, Python, PHP, Java, C/C++, HTML, CSS, and JSON
+- Validates file type before analysis
+- Downloads the uploaded file and sends it to a local Ollama endpoint for evaluation
+- Uses a local model for privacy-friendly code review
+- Logs activity and errors to the `logs` directory
+
+## How it works
+
+1. You send a source file to the bot in Telegram.
+2. The bot checks the file extension.
+3. It downloads the file content.
+4. It sends the file content to the local Ollama API.
+5. The model analyzes the code for vulnerabilities, risky patterns, and suggested fixes.
+6. The bot returns the assessment back to the user in Telegram.
+
+## Requirements
+
+Before you start, make sure you have:
+
+- Node.js 18+ installed
+- npm installed
+- Ollama installed and running locally
+- A Telegram bot token from BotFather
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone <repository-url>
+   cd code-audit-bot
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Make sure Ollama is installed and the model is available:
+
+   ```bash
+   ollama pull qwen2.5-coder:7b
+   ```
+
+   If you want to use the model interactively:
+
+   ```bash
+   ollama run qwen2.5-coder:7b
+   ```
+
+4. Configure environment variables:
+
+   Create a `.env` file based on `.env.example`:
+
+   On Linux/macOS:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   On Windows PowerShell:
+
+   ```powershell
+   Copy-Item .env.example .env
+   ```
+
+   Then fill in the actual values:
+
+   ```env
+   BOT_TOKEN=your_telegram_bot_token
+   OLLAMA_URL=http://localhost:11434/api/generate
+   OLLAMA_TIMEOUT_MS=180000
+   OLLAMA_NUM_PREDICT=800
+   ```
+
+`OLLAMA_TIMEOUT_MS` allows extra time for a model cold start or CPU-based generation. `OLLAMA_NUM_PREDICT` limits the response length so the bot returns promptly.
+
+## Running the bot
+
+Start the application:
+
+```bash
+node index.js
+```
+
+If the bot starts successfully, you should see a message similar to:
+
+```bash
+CodeAuditBot is running...
+```
+
+## Usage
+
+1. Start a chat with your Telegram bot.
+2. Send the `/start` command.
+3. Upload a source code file.
+4. Wait for the security audit result.
+
+Supported file types include:
+
+- `.js`
+- `.py`
+- `.php`
+- `.java`
+- `.cpp`
+- `.c`
+- `.html`
+- `.css`
+- `.json`
+
+## Project structure
+
+```text
+code-audit-bot/
+├── index.js
+├── package.json
+├── .env.example
+├── README
+├── logs/
+└── node_modules/
+```
+
+## Notes
+
+- The bot uses a local Ollama endpoint by default, so your source code stays on your local machine.
+- The app writes logs to `logs/audit.log` and also prints relevant messages to the console.
+- The bot is intended for code review assistance and should not be treated as a complete security validator.
+
+## License
+
+This project is licensed under the ISC license.
+
+## Stack
+
+- Node.js
+- Telegraf
+- Axios
+- Winston
+- Ollama
